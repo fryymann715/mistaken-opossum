@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS customers;
 CREATE TABLE customers
 (
   id SERIAL PRIMARY KEY,
-  name VARCHAR( 150 ) NOT NULL.
+  name VARCHAR( 150 ) NOT NULL,
   address VARCHAR( 150 ),
   phone VARCHAR( 13 ),
   username VARCHAR( 150 ) NOT NULL,
@@ -46,7 +46,9 @@ CREATE TABLE payment_types
   type VARCHAR( 80 ) NOT NULL
 );
 
-DROP TABLE IF EXISTS order_data
+DROP TABLE IF EXISTS order_data;
+
+CREATE TABLE order_data
 (
   id SERIAL PRIMARY KEY,
   drinks VARCHAR( 80 ),
