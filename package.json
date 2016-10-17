@@ -1,0 +1,27 @@
+{
+  "name": "mistaken-opossum",
+  "version": "1.0.0",
+  "description": "Picadilly Pizza Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fryymann715/mistaken-opossum.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fryymann715/mistaken-opossum/issues"
+  },
+  "homepage": "https://github.com/fryymann715/mistaken-opossum#readme",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "express-generator": "^4.13.4",
+    "nodemon": "^1.11.0",
+    "pg-promise": "^5.3.4",
+    "postgresql": "0.0.1",
+    "pug": "^2.0.0-beta6"
+  }
+}
