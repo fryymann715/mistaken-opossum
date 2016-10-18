@@ -120,6 +120,8 @@ CREATE TABLE transactions
 -- Foreign Keys
 -- ---
 
+--TODO: Add Foreign Keys for custom_pizzas, order_data, and customers to work with Arrays Element References (table.column)
+
 ALTER TABLE customers ADD FOREIGN KEY (account_id) REFERENCES users (id);
 
 ALTER TABLE transactions ADD FOREIGN KEY (customer_id) REFERENCES customers (id);
