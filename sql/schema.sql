@@ -1,138 +1,155 @@
 
 
-DROP TABLE IF EXISTS pizza_crusts CASCADE;
 
-CREATE TABLE pizza_crusts
-(
-  id  SERIAL PRIMARY KEY,
-  name VARCHAR( 80 ) NOT NULL,
-  price INTEGER NOT NULL
+-- dropdb mistakenOpossum
+-- createdb mistakenOpossum
+-- psql mistakenOpossum < schema.sql
 
+
+CREATE TABLE "topping" (
+"id"  SERIAL NOT NULL ,
+"name" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+"price" INTEGER ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS toppings CASCADE;
-
-CREATE TABLE toppings
-(
-  id  SERIAL PRIMARY KEY,
-  name  VARCHAR( 80 ) NOT NULL,
-  price INTEGER NOT NULL
+CREATE TABLE "crust" (
+"id"  SERIAL NOT NULL ,
+"name" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+"price" INTEGER ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS payment_cards CASCADE;
-
-CREATE TABLE payment_cards
-(
-  id  SERIAL PRIMARY KEY,
-  customer_id INTEGER NOT NULL,
-  card_type VARCHAR( 20 ) NOT NULL,
-  card_number VARCHAR( 50 ) NOT NULL,
-  csv VARCHAR( 3 ) NOT NULL,
-  expiration VARCHAR( 10 ) NOT NULL,
-  cardholder VARCHAR( 150 ) NOT NULL,
-  billing_address VARCHAR( 150 ) NOT NULL
+CREATE TABLE "custom_pizza" (
+"id"  SERIAL NOT NULL ,
+"price" INTEGER NOT NULL ,
+PRIMARY KEY ("id")
 );
 
-
-DROP TABLE IF EXISTS users CASCADE;
-
-CREATE TABLE users
-(
-  id SERIAL PRIMARY KEY,
-  username VARCHAR( 80 ) NOT NULL,
-  password VARCHAR( 80 ) NOT NULL,
-  account_type VARCHAR( 10 ) NOT NULL DEFAULT 'user'
+CREATE TABLE "specialty_pizza" (
+"id"  SERIAL NOT NULL ,
+"description" TEXT ,
+"price" INTEGER ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS customers CASCADE;
-
-CREATE TABLE customers
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR( 150 ) NOT NULL,
-  address VARCHAR( 150 ),
-  phone VARCHAR( 13 ),
-  account_id INTEGER,
-  payment_cards VARCHAR(80),
-  transaction_history VARCHAR(80)
+CREATE TABLE "beverage" (
+"id"  SERIAL NOT NULL ,
+"name" VARCHAR(80) ,
+"manufacturer" VARCHAR(80) ,
+"supplier" VARCHAR(80) ,
+"price" INTEGER NOT NULL ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS drinks CASCADE;
-
-CREATE TABLE drinks
-(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR( 80 ) NOT NULL,
-  manufacturer VARCHAR( 150 ),
-  supplier VARCHAR( 150 ),
-  price INTEGER NOT NULL
+CREATE TABLE "order_data" (
+"id"  SERIAL NOT NULL ,
+"price" INTEGER ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS custom_pizzas CASCADE;
-
-CREATE TABLE custom_pizzas
-(
-  id  SERIAL PRIMARY KEY,
-  crust INTEGER,
-  toppings VARCHAR(80),
-  price INTEGER NOT NULL
+CREATE TABLE "transaction" (
+"id"  SERIAL NOT NULL ,
+"date" TIMESTAMP ,
+"delivery_address" VARCHAR(80) ,
+"order_id" INTEGER ,
+"price" INTEGER ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS specialty_pizzas CASCADE;
-
-CREATE TABLE specialty_pizzas
-(
-  id  SERIAL PRIMARY KEY,
-  name VARCHAR( 80 ) NOT NULL,
-  description TEXT,
-  crust VARCHAR(80),
-  toppings VARCHAR(80),
-  price INTEGER NOT NULL
+CREATE TABLE "payment_cards" (
+"id"  SERIAL NOT NULL ,
+"card_type" INTEGER ,
+"card_number" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+"expiration_date" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+"csv" INTEGER NOT NULL ,
+"cardholder_name" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS order_data CASCADE;
-
-CREATE TABLE order_data
-(
-  id SERIAL PRIMARY KEY,
-  drinks VARCHAR(80),
-  custom_pizzas VARCHAR(80),
-  specialty_pizzas VARCHAR(80),
-  price INTEGER
+CREATE TABLE "payment_type" (
+"id"  SERIAL NOT NULL ,
+"name" VARCHAR(12) ,
+PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS transactions CASCADE;
-
-CREATE TABLE transactions
-(
-  id  SERIAL PRIMARY KEY,
-  customer_id INTEGER NOT NULL,
-  transaction_date TIMESTAMP NOT NULL,
-  payment_type INTEGER NOT NULL,
-  delivery_location VARCHAR( 150 ),
-  order_id INTEGER NOT NULL,
-  price INTEGER NOT NULL
+CREATE TABLE "customer" (
+"id"  SERIAL NOT NULL ,
+"name" VARCHAR(80) ,
+"address" INTEGER ,
+"phone_number" INTEGER ,
+PRIMARY KEY ("id")
 );
 
+CREATE TABLE "account" (
+"id"  SERIAL NOT NULL ,
+"username" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+"password" VARCHAR(90) NOT NULL DEFAULT 'NULL' ,
+PRIMARY KEY ("id")
+);
 
+CREATE TABLE "pizza_toppings" (
+"pizza_id"  SERIAL ,
+"topping_id" INTEGER
+);
 
--- ---
--- Foreign Keys
--- ---
+CREATE TABLE "pizza_crusts" (
+"pizza_id"  SERIAL ,
+"crust_id" INTEGER
+);
 
---TODO: Add Foreign Keys for custom_pizzas, order_data, and customers to work with Arrays Element References (table.column)
+CREATE TABLE "ordered_specialty_pizzas" (
+"order_id"  SERIAL ,
+"pizza_id" INTEGER
+);
 
-ALTER TABLE customers ADD FOREIGN KEY (account_id) REFERENCES users (id);
+CREATE TABLE "ordered_custom_pizzas" (
+"order_id"  SERIAL ,
+"pizza_id" INTEGER
+);
 
-ALTER TABLE transactions ADD FOREIGN KEY (customer_id) REFERENCES customers (id);
-ALTER TABLE transactions ADD FOREIGN KEY (payment_type) REFERENCES payment_cards (id);
-ALTER TABLE transactions ADD FOREIGN KEY (order_id) REFERENCES order_data (id);
+CREATE TABLE "ordered_beverages" (
+"order_id"  SERIAL ,
+"beverage_id" INTEGER
+);
 
-ALTER TABLE custom_pizzas ADD FOREIGN KEY (crust) REFERENCES pizza_crusts;
+CREATE TABLE "transaction_payments" (
+"transaction_id"  SERIAL ,
+"payment_id" INTEGER
+);
 
+CREATE TABLE "customer_transactions" (
+"customer_id"  SERIAL ,
+"transaction_id" INTEGER
+);
 
--------
--- Add CASH as payment_card entry 0.
--------
-INSERT INTO customers (name) VALUES ('HOUSE');
-INSERT INTO payment_cards (customer_id, card_type, card_number, csv, expiration, cardholder, billing_address) VALUES (1, 'CASH', 0,0, 'none', 'none', 'none');
+CREATE TABLE "cards_on_file" (
+"customer_id"  SERIAL ,
+"card_id" INTEGER
+);
+
+CREATE TABLE "customer_accounts" (
+"customer_id"  SERIAL ,
+"account_id" INTEGER
+);
+
+ALTER TABLE "transaction" ADD FOREIGN KEY ("order_id") REFERENCES "order_data" ("id");
+ALTER TABLE "payment_cards" ADD FOREIGN KEY ("card_type") REFERENCES "payment_type" ("id");
+ALTER TABLE "pizza_toppings" ADD FOREIGN KEY ("pizza_id") REFERENCES "custom_pizza" ("id");
+ALTER TABLE "pizza_toppings" ADD FOREIGN KEY ("topping_id") REFERENCES "topping" ("id");
+ALTER TABLE "pizza_crusts" ADD FOREIGN KEY ("pizza_id") REFERENCES "custom_pizza" ("id");
+ALTER TABLE "pizza_crusts" ADD FOREIGN KEY ("crust_id") REFERENCES "crust" ("id");
+ALTER TABLE "ordered_specialty_pizzas" ADD FOREIGN KEY ("order_id") REFERENCES "order_data" ("id");
+ALTER TABLE "ordered_specialty_pizzas" ADD FOREIGN KEY ("pizza_id") REFERENCES "specialty_pizza" ("id");
+ALTER TABLE "ordered_custom_pizzas" ADD FOREIGN KEY ("order_id") REFERENCES "order_data" ("id");
+ALTER TABLE "ordered_custom_pizzas" ADD FOREIGN KEY ("pizza_id") REFERENCES "custom_pizza" ("id");
+ALTER TABLE "ordered_beverages" ADD FOREIGN KEY ("order_id") REFERENCES "order_data" ("id");
+ALTER TABLE "ordered_beverages" ADD FOREIGN KEY ("beverage_id") REFERENCES "beverage" ("id");
+ALTER TABLE "transaction_payments" ADD FOREIGN KEY ("transaction_id") REFERENCES "transaction" ("id");
+ALTER TABLE "transaction_payments" ADD FOREIGN KEY ("payment_id") REFERENCES "payment_cards" ("id");
+ALTER TABLE "customer_transactions" ADD FOREIGN KEY ("customer_id") REFERENCES "customer" ("id");
+ALTER TABLE "customer_transactions" ADD FOREIGN KEY ("transaction_id") REFERENCES "transaction" ("id");
+ALTER TABLE "cards_on_file" ADD FOREIGN KEY ("customer_id") REFERENCES "customer" ("id");
+ALTER TABLE "cards_on_file" ADD FOREIGN KEY ("card_id") REFERENCES "payment_cards" ("id");
+ALTER TABLE "customer_accounts" ADD FOREIGN KEY ("customer_id") REFERENCES "customer" ("id");
+ALTER TABLE "customer_accounts" ADD FOREIGN KEY ("account_id") REFERENCES "account" ("id");
