@@ -2,48 +2,77 @@
 <!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
 <!-- Active URL: http://ondras.zarovi.cz/sql/demo/ -->
 <sql>
-<datatypes db="mysql">
+<datatypes db="postgresql">
 	<group label="Numeric" color="rgb(238,238,170)">
-		<type label="Integer" length="0" sql="INTEGER" quote=""/>
-	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
-	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
-	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
-	 	<type label="INT" length="0" sql="INT" quote=""/>
-		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
-		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Integer" length="0" sql="INTEGER" re="INT" quote=""/>
+		<type label="Small Integer" length="0" sql="SMALLINT" quote=""/>
+		<type label="Big Integer" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="numeric" quote=""/>
+		<type label="Serial" length="0" sql="SERIAL" re="SERIAL4" fk="Integer" quote=""/>
+		<type label="Big Serial" length="0" sql="BIGSERIAL" re="SERIAL8" fk="Big Integer" quote=""/>
+		<type label="Real" length="0" sql="BIGINT" quote=""/>
 		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
 		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
 	</group>
 
 	<group label="Character" color="rgb(255,200,200)">
 		<type label="Char" length="1" sql="CHAR" quote="'"/>
-		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
-		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
-		<type label="Binary" length="1" sql="BINARY" quote="'"/>
-		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
-		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" re="CHARACTER VARYING" quote="'"/>
+		<type label="Text" length="0" sql="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BYTEA" quote="'"/>
+		<type label="Boolean" length="0" sql="BOOLEAN" quote="'"/>
 	</group>
 
 	<group label="Date &amp; Time" color="rgb(200,255,200)">
 		<type label="Date" length="0" sql="DATE" quote="'"/>
-		<type label="Time" length="0" sql="TIME" quote="'"/>
-		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
-		<type label="Year" length="0" sql="YEAR" quote=""/>
-		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+		<type label="Time" length="1" sql="TIME" quote="'"/>
+		<type label="Time w/ TZ" length="0" sql="TIME WITH TIME ZONE" quote="'"/>
+		<type label="Interval" length="1" sql="INTERVAL" quote="'"/>
+		<type label="Timestamp" length="1" sql="TIMESTAMP" quote="'"/>
+		<type label="Timestamp w/ TZ" length="0" sql="TIMESTAMP WITH TIME ZONE" quote="'"/>
+		<type label="Timestamp wo/ TZ" length="0" sql="TIMESTAMP WITHOUT TIME ZONE" quote="'"/>
 	</group>
 
 	<group label="Miscellaneous" color="rgb(200,200,255)">
-		<type label="ENUM" length="1" sql="ENUM" quote=""/>
-		<type label="SET" length="1" sql="SET" quote=""/>
-		<type label="Bit" length="0" sql="bit" quote=""/>
+		<type label="XML" length="1" sql="XML" quote="'"/>
+		<type label="Bit" length="1" sql="BIT" quote="'"/>
+		<type label="Bit Varying" length="1" sql="VARBIT" re="BIT VARYING" quote="'"/>
+		<type label="Inet Host Addr" length="0" sql="INET" quote="'"/>
+		<type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'"/>
+		<type label="Geometry" length="0" sql="GEOMETRY" quote="'"/>
 	</group>
-</datatypes><table x="1364" y="308" name="pizza_crusts">
-<row name="id" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
+</datatypes><table x="1687" y="458" name="topping">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
 <default>NULL</default></row>
 <row name="name" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<datatype>VARCHAR(80)</datatype>
 <default>'NULL'</default></row>
+<row name="price" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1709" y="619" name="crust">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
+<default>NULL</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
+<default>'NULL'</default></row>
+<row name="price" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1296" y="550" name="custom_pizza">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
+<default>NULL</default></row>
 <row name="price" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -51,64 +80,32 @@
 <part>id</part>
 </key>
 </table>
-<table x="80" y="102" name="customers">
+<table x="1291" y="655" name="specialty_pizza">
 <row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<row name="price" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1292" y="391" name="beverage">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<datatype>VARCHAR(80)</datatype>
 <default>NULL</default></row>
-<row name="address" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="phone" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="payment_cards" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="payment_cards" row="id" />
-</row>
-<row name="pizza_preferences" null="1" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>NULL</default></row>
-<row name="transaction_history" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="transactions" row="id" />
-</row>
-<row name="account_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1363" y="51" name="ingredients">
-<row name="id" null="0" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="name" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>'NULL'</default></row>
-<row name="price" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>1.50</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1024" y="28" name="drinks">
-<row name="id" null="0" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="name" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>'NULL'</default></row>
 <row name="manufacturer" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<datatype>VARCHAR(80)</datatype>
 <default>NULL</default></row>
 <row name="supplier" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>VARCHAR(80)</datatype>
 <default>NULL</default></row>
 <row name="price" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -117,136 +114,192 @@
 <part>id</part>
 </key>
 </table>
-<table x="401" y="299" name="transactions">
+<table x="862" y="463" name="order_data">
 <row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
+<default>NULL</default></row>
+<row name="price" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="customer_id" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="customers" row="id" />
-</row>
-<row name="date" null="0" autoincrement="0">
-<datatype>DATETIME</datatype>
-<default>'NULL'</default></row>
-<row name="payment_method" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="payment_cards" row="id" />
-</row>
-<row name="price" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="995" y="83" name="transaction">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
 <default>NULL</default></row>
-<row name="delivery_location" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>'NULL'</default></row>
+<row name="date" null="1" autoincrement="0">
+<datatype>TIMESTAMP</datatype>
+<default>NULL</default></row>
+<row name="delivery_address" null="1" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
+<default>NULL</default></row>
 <row name="order_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="order_data" row="id" />
 </row>
+<row name="price" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1017" y="438" name="specialty_pizzas">
+<table x="558" y="336" name="payment_cards">
 <row name="id" null="0" autoincrement="1">
-<datatype>INTEGER</datatype>
+<datatype>SERIAL</datatype>
 <default>NULL</default></row>
-<row name="name" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<row name="card_type" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="payment_type" row="id" />
+</row>
+<row name="card_number" null="0" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
 <default>'NULL'</default></row>
-<row name="toppings" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="ingredients" row="id" />
-</row>
-<row name="price" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1010" y="212" name="custom_pizzas">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="crust" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="pizza_crusts" row="id" />
-</row>
-<row name="toppings" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="ingredients" row="id" />
-</row>
-<row name="price" null="0" autoincrement="0">
-<datatype>DOUBLE</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="701" y="300" name="order_data">
-<row name="id" null="0" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="drinks" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="drinks" row="id" />
-</row>
-<row name="built_pizzas" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="custom_pizzas" row="id" />
-</row>
-<row name="specialty_pizzas" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="specialty_pizzas" row="id" />
-</row>
-<row name="price" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="619" y="85" name="payment_cards">
-<row name="id" null="0" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="card_type" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="number" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>'NULL'</default></row>
-<row name="expiration" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<row name="expiration_date" null="0" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
 <default>'NULL'</default></row>
 <row name="csv" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>'NULL'</default></row>
-<row name="owner_name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="billing_address" null="0" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<row name="cardholder_name" null="0" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
 <default>'NULL'</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="92" y="496" name="users">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
+<table x="341" y="505" name="payment_type">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
 <default>NULL</default></row>
-<row name="username" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="password" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="admin" null="1" autoincrement="0">
-<datatype>BINARY</datatype>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR(12)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
+</table>
+<table x="40" y="86" name="customer">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
+<default>NULL</default></row>
+<row name="address" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="phone_number" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="47" y="438" name="account">
+<row name="id" null="0" autoincrement="1">
+<datatype>SERIAL</datatype>
+<default>NULL</default></row>
+<row name="username" null="0" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
+<default>'NULL'</default></row>
+<row name="password" null="0" autoincrement="0">
+<datatype>VARCHAR(90)</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1483" y="451" name="pizza_toppings">
+<row name="pizza_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="custom_pizza" row="id" />
+</row>
+<row name="topping_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="topping" row="id" />
+</row>
+</table>
+<table x="1502" y="599" name="pizza_crusts">
+<row name="pizza_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="custom_pizza" row="id" />
+</row>
+<row name="crust_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="crust" row="id" />
+</row>
+</table>
+<table x="1043" y="594" name="ordered_specialty_pizzas">
+<row name="order_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="order_data" row="id" />
+</row>
+<row name="pizza_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="specialty_pizza" row="id" />
+</row>
+</table>
+<table x="1046" y="460" name="ordered_custom_pizzas">
+<row name="order_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="order_data" row="id" />
+</row>
+<row name="pizza_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="custom_pizza" row="id" />
+</row>
+</table>
+<table x="1064" y="342" name="ordered_beverages">
+<row name="order_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="order_data" row="id" />
+</row>
+<row name="beverage_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="beverage" row="id" />
+</row>
+</table>
+<table x="564" y="190" name="transaction_payments">
+<row name="transaction_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="transaction" row="id" />
+</row>
+<row name="payment_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="payment_cards" row="id" />
+</row>
+</table>
+<table x="562" y="53" name="customer_transactions">
+<row name="customer_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="transaction_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="transaction" row="id" />
+</row>
+</table>
+<table x="291" y="202" name="cards_on_file">
+<row name="customer_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="card_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="payment_cards" row="id" />
+</row>
+</table>
+<table x="44" y="290" name="customer_accounts">
+<row name="customer_id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="customer" row="id" />
+</row>
+<row name="account_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="account" row="id" />
+</row>
 </table>
 </sql>

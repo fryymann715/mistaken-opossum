@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const toppings = require('./routes/toppings')
-const pizza_crusts = require('./routes/pizza_crusts')
+const crusts = require('./routes/crusts')
 const custom_pizzas = require('./routes/custom_pizzas')
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/toppings', toppings)
-app.use('/pizza_crusts', pizza_crusts)
+app.use('/crusts', crusts)
 app.use('/custom_pizzas', custom_pizzas)
 
 // catch 404 and forward to error handler
