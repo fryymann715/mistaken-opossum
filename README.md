@@ -1,5 +1,6 @@
 # mistaken-opossum
-Description
+
+### Story
 
 Piccadilly Pizza is a diamond in the rough: their deep dish is the bomb dot com, but they're just breaking even because they lack the easy-to-use online ordering interface that will give them a competitive edge.
 
@@ -21,11 +22,11 @@ Specifications
 - [] Track its pizza sizes (small, medium, large, extra large), types (thick or thin crust), ingredients (pepperoni, sausage, mushrooms, onions, cheese, etc.), price data for these pizza sizes and ingredients.
 - [] Maintain a history of transactions - all purchases including price, payment method, and delivery date.
 
-Required
+### Required
 
     The artifact produced is properly licensed, preferably with the MIT license.
 
-Quality Rubric
+### Quality Rubric
 
     The E-R diagram is fully fleshed out according to spec.
     The E-R diagram includes whether or not each relationship in the schema is is one to one, one to many, or many to many.
