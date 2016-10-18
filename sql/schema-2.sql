@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS topping;
+DROP TABLE IF EXISTS topping CASCADE;
 
 CREATE TABLE "topping" (
 "id"  SERIAL NOT NULL ,
@@ -7,7 +7,7 @@ CREATE TABLE "topping" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS pizza_crusts;
+DROP TABLE IF EXISTS pizza_crusts CASCADE;
 
 CREATE TABLE "pizza_crust" (
 "id"  SERIAL NOT NULL ,
@@ -16,7 +16,7 @@ CREATE TABLE "pizza_crust" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS pizza_custom;
+DROP TABLE IF EXISTS pizza_custom CASCADE;
 
 CREATE TABLE "pizza_custom" (
 "id"  SERIAL NOT NULL ,
@@ -26,7 +26,7 @@ CREATE TABLE "pizza_custom" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS pizza_specialty;
+DROP TABLE IF EXISTS pizza_specialty CASCADE;
 
 CREATE TABLE "pizza_specialty" (
 "id"  SERIAL NOT NULL ,
@@ -36,7 +36,7 @@ CREATE TABLE "pizza_specialty" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS beverage;
+DROP TABLE IF EXISTS beverage CASCADE;
 
 CREATE TABLE "beverage" (
 "id"  SERIAL NOT NULL ,
@@ -47,7 +47,7 @@ CREATE TABLE "beverage" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS order_data;
+DROP TABLE IF EXISTS order_data CASCADE;
 
 CREATE TABLE "order_data" (
 "id"  SERIAL NOT NULL ,
@@ -58,7 +58,7 @@ CREATE TABLE "order_data" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS transaction;
+DROP TABLE IF EXISTS transaction CASCADE;
 
 CREATE TABLE "transaction" (
 "id"  SERIAL NOT NULL ,
@@ -71,7 +71,7 @@ CREATE TABLE "transaction" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS payment_cards;
+DROP TABLE IF EXISTS payment_cards CASCADE;
 
 CREATE TABLE "payment_cards" (
 "id"  SERIAL NOT NULL ,
@@ -83,7 +83,7 @@ CREATE TABLE "payment_cards" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS payment_type;
+DROP TABLE IF EXISTS payment_type CASCADE;
 
 CREATE TABLE "payment_type" (
 "id"  SERIAL NOT NULL ,
@@ -91,7 +91,7 @@ CREATE TABLE "payment_type" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS customer CASCADE;
 
 CREATE TABLE "customer" (
 "id"  SERIAL NOT NULL ,
@@ -104,7 +104,7 @@ CREATE TABLE "customer" (
 PRIMARY KEY ("id")
 );
 
-DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS account CASCADE;
 
 CREATE TABLE "account" (
 "id"  SERIAL NOT NULL ,
