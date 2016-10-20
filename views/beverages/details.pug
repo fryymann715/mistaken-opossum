@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h3 Beverage details
+
+  if beverage
+    h4 #{beverage.name}
+    ul
+      li
+        h5 #{beverage.manufacturer}
+      li
+        h5 #{beverage.supplier}
+      li
+        h5 #{beverage.price}
