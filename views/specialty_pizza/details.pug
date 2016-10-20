@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+
+  h2 Pizza details
+
+  if specialty_pizza
+    h4 #{specialty_pizza.description}
+
+    h5 Price: $#{specialty_pizza.price}
