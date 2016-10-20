@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h2 Beverages
+
+  if beverages
+    -for (beverage of beverages){
+      h4 #{beverage.name}
+    -}

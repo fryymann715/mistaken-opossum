@@ -10,6 +10,8 @@ const users = require('./routes/users');
 const toppings = require('./routes/toppings')
 const crusts = require('./routes/crusts')
 const custom_pizzas = require('./routes/custom_pizza')
+const beverage = require('./routes/beverage')
+const specialty_pizza = require('./routes/specialty_pizza')
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use('/users', users);
 app.use('/toppings', toppings)
 app.use('/crusts', crusts)
 app.use('/custom_pizza', custom_pizzas)
+app.use('/beverage', beverage)
+app.use('/specialty_pizza', specialty_pizza)
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {

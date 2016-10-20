@@ -16,6 +16,8 @@ Specifications
 
 ### Specs
 
+- [ ] Create a detailed E-R diagram.
+- [ ] Perform as much logic as possible in the database.
 - [ ] Track all of its customers and any relevant customer information, such as customer ID, name, username/login details, delivery address, phone number, payment methods on file.
 - [ ] Track the ingredients that comprise each of these preferences (e.g., onions, ham, pineapple, anchovies, bacon, etc.)
 - [ ] Track standard drinks, including a product ID, drink description, manufacturer, supplier, price
