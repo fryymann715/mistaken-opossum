@@ -2,8 +2,10 @@ extends ../layout
 
 block content
   h2 Beverages
+  hr
 
   if beverages
     -for (beverage of beverages){
-      h4 #{beverage.name}
+      a(href="/beverage/details/" + beverage.id)
+        h4 #{beverage.name}
     -}

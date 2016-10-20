@@ -5,6 +5,9 @@ block content
   hr
   br
 
+  if message
+    h5= message
+
   form( action="/beverage/add", method="post" )
     input( name="name", placeholder="Name" )
     input( name="manufacturer", placeholder="Manufacturer" )
