@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  h2 Create a New Pizza
+
+  form( action="/custom_pizza/add", method="post")
+    select(name="crust_id")
+      -for (crust of crusts){
+        option(value=crust.id) #{crust.name}
+      -}
+    input( type='submit', value="Submit")
