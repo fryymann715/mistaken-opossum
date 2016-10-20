@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  h1 Add a Pizza
+
+  form( action="/specialty_pizza/add", method="post")
+    input( name="description", placeholder="pizza name" )
+    input( name="price", placeholder="pizza price" )
+    input( type="submit", value="Submit" )
+
+  a( href="/specialty_pizza/" ) Back

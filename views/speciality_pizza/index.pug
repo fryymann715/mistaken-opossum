@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  h2 Specialty Pizza
+
+  if specialty_pizza
+    -for (pizza of specialty_pizza){
+        h4 #{specialty_pizza.description}
+        p
+          ul
+            li
+              a(href="/specialty_pizza/edit/" + specialty_pizza.id ) Edit
+            li
+              a(href="/specialty_pizza/delete/" + specialty_pizza.id ) Delete
+    -}
+    hr
+    p
+      h5
+        a( href="/specialty_pizza/add" ) add
