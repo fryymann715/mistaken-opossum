@@ -7,7 +7,7 @@ const { Topping } = require('../database/toppingsDB')
 router.get('/', ( request, response ) => {
   Promise.all([ CustomPizza.getAll() ])
   .then( data => {
-    response.send(data[0])
+    response.render( 'custom_pizzas/add ', { crusts: data[0] } )
   })
 })
 

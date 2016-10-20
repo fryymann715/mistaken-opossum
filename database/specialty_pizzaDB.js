@@ -11,7 +11,8 @@ const specialty_pizza = {
     if ( price != '' ) sql += `, price='${price}'`
     sql += ` WHERE id = '${id}'`
     db.none( sql ) },
-  delete: id => db.none( `DELETE FROM specialty_pizza WHERE id = '${id}'` )
+  delete: id => db.none( `DELETE FROM specialty_pizza WHERE id = '${id}'` ),
+  getPrice: pizza_id => db.one( `SELECT price FROM specialty_pizza WHERE id = '${specialty_pizza_id}'` )
 
 }
 
