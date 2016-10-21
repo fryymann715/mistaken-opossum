@@ -17,7 +17,6 @@ const Beverage = {
     if( supplier != '') sql += `supplier='${supplier}'`
     if( price != '') sql += `price=${price}`
     sql += ` WHERE id = ${id}`
-    console.log( sql )
     db.none( sql ) },
 
   delete: id => db.none( `DELETE FROM beverage WHERE id = ${id}` )
