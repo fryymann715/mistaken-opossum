@@ -36,11 +36,7 @@ block content
     -}
     a( href="/beverage/" + order_id  )
       h6 add
-
-  if data
-    -for ( specialtyp of data ){
-      h5= specialtyp
-      -for( i in item ){
-        h5= item[i]
-      -}
-    -}
+  hr
+  form( action="/transaction/new", method="post" )
+    input( name="order_id", type="hidden", value=order_id )
+    input( type="submit", value="Checkout" )
