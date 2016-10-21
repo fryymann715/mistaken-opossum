@@ -9,7 +9,7 @@ const Order = {
   getContents: order_id => db.any( `BEGIN TRANSACTION;
                                     SELECT pizza_id AS customP FROM ordered_custom_pizzas WHERE order_id=${order_id};
                                     SELECT pizza_id AS specialtyP FROM ordered_specialty_pizzas WHERE order_id=${order_id};
-                                    SELECT beverage_id as beverage FROM ordered_beverages WHERE order_id=${order_id};
+                                    SELECT beverage_id AS beverage FROM ordered_beverages WHERE order_id=${order_id};
                                     COMMIT;` ),
 
   getCustomPizzas: order_id => db.any( `SELECT pizza_id AS custom FROM ordered_custom_pizzas WHERE order_id=${order_id}` ),

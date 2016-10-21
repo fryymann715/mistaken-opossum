@@ -14,6 +14,7 @@ router.get( '/details/:order_id', ( request, response ) => {
   .then( data => {
 
     const results = data[0]
+
     const custom_pizza_ids = []
     const specialty_pizza_ids = []
     const beverage_ids = []
@@ -54,8 +55,13 @@ router.post( '/new', ( request, response ) => {
 
 router.post( '/add/custom_pizza', ( request, response ) => {
   const { order_id, pizza_id } = request.body
-  console.log("order id then Pizza Id " + order_id, pizza_id  )
   Promise.all([ Order.addCustomPizza( order_id, pizza_id ) ])
+  .then( response.redirect( `/order/details/${order_id}` ) )
+})
+
+router.get( '/add/beverage/:beverage_id/:order_id', ( request, response ) => {
+  const { beverage_id, order_id } = request.params
+  Promise.all([ Order.addBeverage( order_id, beverage_id ) ])
   .then( response.redirect( `/order/details/${order_id}` ) )
 })
 
