@@ -41,7 +41,7 @@
 		<type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'"/>
 		<type label="Geometry" length="0" sql="GEOMETRY" quote="'"/>
 	</group>
-</datatypes><table x="1687" y="458" name="topping">
+</datatypes><table x="1702" y="533" name="topping">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -55,7 +55,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1709" y="619" name="crust">
+<table x="1701" y="803" name="crust">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -69,7 +69,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1296" y="550" name="custom_pizza">
+<table x="1299" y="658" name="custom_pizza">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -80,7 +80,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1291" y="655" name="specialty_pizza">
+<table x="1386" y="310" name="specialty_pizza">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -94,7 +94,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1292" y="391" name="beverage">
+<table x="1412" y="33" name="beverage">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -114,7 +114,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="862" y="463" name="order_data">
+<table x="796" y="322" name="order_data">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -125,7 +125,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="995" y="83" name="transaction">
+<table x="858" y="47" name="transaction">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -146,14 +146,13 @@
 <part>id</part>
 </key>
 </table>
-<table x="558" y="336" name="payment_cards">
+<table x="285" y="350" name="payment_cards">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
 <row name="card_type" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="payment_type" row="id" />
-</row>
+<default>NULL</default></row>
 <row name="card_number" null="0" autoincrement="0">
 <datatype>VARCHAR(80)</datatype>
 <default>'NULL'</default></row>
@@ -170,18 +169,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="341" y="505" name="payment_type">
-<row name="id" null="0" autoincrement="1">
-<datatype>SERIAL</datatype>
-<default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR(12)</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="40" y="86" name="customer">
+<table x="65" y="41" name="customer">
 <row name="id" null="0" autoincrement="1">
 <datatype>SERIAL</datatype>
 <default>NULL</default></row>
@@ -189,7 +177,7 @@
 <datatype>VARCHAR(80)</datatype>
 <default>NULL</default></row>
 <row name="address" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>VARCHAR(80)</datatype>
 <default>NULL</default></row>
 <row name="phone_number" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -198,21 +186,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="47" y="438" name="account">
-<row name="id" null="0" autoincrement="1">
-<datatype>SERIAL</datatype>
-<default>NULL</default></row>
-<row name="username" null="0" autoincrement="0">
-<datatype>VARCHAR(80)</datatype>
-<default>'NULL'</default></row>
-<row name="password" null="0" autoincrement="0">
-<datatype>VARCHAR(90)</datatype>
-<default>'NULL'</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1483" y="451" name="pizza_toppings">
+<table x="1502" y="617" name="pizza_toppings">
 <row name="pizza_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="custom_pizza" row="id" />
@@ -222,7 +196,7 @@
 <default>NULL</default><relation table="topping" row="id" />
 </row>
 </table>
-<table x="1502" y="599" name="pizza_crusts">
+<table x="1502" y="737" name="pizza_crusts">
 <row name="pizza_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="custom_pizza" row="id" />
@@ -232,7 +206,7 @@
 <default>NULL</default><relation table="crust" row="id" />
 </row>
 </table>
-<table x="1043" y="594" name="ordered_specialty_pizzas">
+<table x="1057" y="372" name="ordered_specialty_pizzas">
 <row name="order_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="order_data" row="id" />
@@ -242,7 +216,7 @@
 <default>NULL</default><relation table="specialty_pizza" row="id" />
 </row>
 </table>
-<table x="1046" y="460" name="ordered_custom_pizzas">
+<table x="1059" y="528" name="ordered_custom_pizzas">
 <row name="order_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="order_data" row="id" />
@@ -252,7 +226,7 @@
 <default>NULL</default><relation table="custom_pizza" row="id" />
 </row>
 </table>
-<table x="1064" y="342" name="ordered_beverages">
+<table x="1066" y="226" name="ordered_beverages">
 <row name="order_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="order_data" row="id" />
@@ -262,7 +236,7 @@
 <default>NULL</default><relation table="beverage" row="id" />
 </row>
 </table>
-<table x="564" y="190" name="transaction_payments">
+<table x="493" y="219" name="transaction_payments">
 <row name="transaction_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="transaction" row="id" />
@@ -272,7 +246,7 @@
 <default>NULL</default><relation table="payment_cards" row="id" />
 </row>
 </table>
-<table x="562" y="53" name="customer_transactions">
+<table x="493" y="36" name="customer_transactions">
 <row name="customer_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="customer" row="id" />
@@ -282,7 +256,7 @@
 <default>NULL</default><relation table="transaction" row="id" />
 </row>
 </table>
-<table x="291" y="202" name="cards_on_file">
+<table x="62" y="223" name="cards_on_file">
 <row name="customer_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="customer" row="id" />
@@ -290,16 +264,6 @@
 <row name="card_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="payment_cards" row="id" />
-</row>
-</table>
-<table x="44" y="290" name="customer_accounts">
-<row name="customer_id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="customer" row="id" />
-</row>
-<row name="account_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="account" row="id" />
 </row>
 </table>
 </sql>

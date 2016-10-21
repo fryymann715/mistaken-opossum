@@ -13,6 +13,8 @@ const custom_pizzas = require('./routes/custom_pizza')
 const beverage = require('./routes/beverage')
 const specialty_pizza = require('./routes/specialty_pizza')
 const order_route = require('./routes/orders')
+//const customer = require('./routes/customer')
+const transaction = require('./routes/transaction')
 
 const app = express();
 
@@ -28,21 +30,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/order', order_route)
-app.use('/users', users);
-app.use('/toppings', toppings)
-app.use('/crusts', crusts)
-app.use('/custom_pizza', custom_pizzas)
-app.use('/beverage', beverage)
-app.use('/specialty_pizza', specialty_pizza)
+app.use('/', routes )
+app.use('/order', order_route )
+app.use('/users', users )
+app.use('/toppings', toppings )
+app.use('/crusts', crusts )
+app.use('/custom_pizza', custom_pizzas )
+app.use('/beverage', beverage )
+app.use('/specialty_pizza', specialty_pizza )
+//app.use('/customer', customer )
+app.use('/transaction', transaction )
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+  let err = new Error('Not Found')
+  err.status = 404
+  next(err)
+})
 
 // error handlers
 
