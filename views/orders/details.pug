@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  h2 Order details
+  hr
+
+  if customPizzas
+    h3 Custom Pizzas
+    -for ( pizza of customPizzas ){
+      h5 id #{pizza}
+      a( href="/order/remove/custom_pizza/" + pizza +"/"+ order_id )
+        h6 delete
+
+    -}
+    a(href="/custom_pizza/add/" + order_id )
+      h6 add
+  hr
+
+  if specialtyPizzas
+    h3 Specialty Pizzas
+    -for ( pizza of specialtyPizzas ){
+      h5 id #{pizza}
+      a( href="/order/remove/specialty_pizza/" + pizza +"/"+ order_id )
+        h6 delete
+    -}
+    a( href="/specialty_pizza/add/" + order_id )
+      h6 add
+  hr
+
+  if beverages
+    h3 beverages
+    -for ( bev of beverages ){
+      h5 id #{bev}
+      a( href="/order/remove/beverage/" + bev +"/"+ order_id )
+        h6 delete
+    -}
+    a( href="/beverage/" + order_id  )
+      h6 add
+
+  if data
+    -for ( specialtyp of data ){
+      h5= specialtyp
+      -for( i in item ){
+        h5= item[i]
+      -}
+    -}

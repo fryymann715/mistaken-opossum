@@ -4,6 +4,7 @@ block content
   h2 Create a New Pizza
 
   form( action="/custom_pizza/add", method="post")
+    input( name="order_id", type="hidden", value=order_id )
     select(name="crust_id")
       -for (crust of crusts){
         option(value=crust.id) #{crust.name}
