@@ -12,6 +12,7 @@ const crusts = require('./routes/crusts')
 const custom_pizzas = require('./routes/custom_pizza')
 const beverage = require('./routes/beverage')
 const specialty_pizza = require('./routes/specialty_pizza')
+const order_route = require('./routes/orders')
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/order', order_route)
 app.use('/users', users);
 app.use('/toppings', toppings)
 app.use('/crusts', crusts)
