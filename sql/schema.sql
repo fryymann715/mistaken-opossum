@@ -59,7 +59,7 @@ PRIMARY KEY ("id")
 
 CREATE TABLE "payment_cards" (
 "id"  SERIAL NOT NULL ,
-"card_type" INTEGER ,
+"card_type" TEXT NOT NULL DEFAULT 'NULL',
 "card_number" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
 "expiration_date" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
 "csv" INTEGER NOT NULL ,
@@ -67,17 +67,12 @@ CREATE TABLE "payment_cards" (
 PRIMARY KEY ("id")
 );
 
-CREATE TABLE "payment_type" (
-"id"  SERIAL NOT NULL ,
-"name" VARCHAR(12) ,
-PRIMARY KEY ("id")
-);
 
 CREATE TABLE "customer" (
 "id"  SERIAL NOT NULL ,
 "name" VARCHAR(80) ,
-"address" INTEGER ,
-"phone_number" INTEGER ,
+"address" VARCHAR(80) ,
+"phone_number" TEXT ,
 PRIMARY KEY ("id")
 );
 
@@ -134,7 +129,6 @@ CREATE TABLE "customer_accounts" (
 );
 
 ALTER TABLE "transaction" ADD FOREIGN KEY ("order_id") REFERENCES "order_data" ("id");
-ALTER TABLE "payment_cards" ADD FOREIGN KEY ("card_type") REFERENCES "payment_type" ("id");
 ALTER TABLE "pizza_toppings" ADD FOREIGN KEY ("pizza_id") REFERENCES "custom_pizza" ("id");
 ALTER TABLE "pizza_toppings" ADD FOREIGN KEY ("topping_id") REFERENCES "topping" ("id");
 ALTER TABLE "pizza_crusts" ADD FOREIGN KEY ("pizza_id") REFERENCES "custom_pizza" ("id");
