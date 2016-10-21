@@ -13,15 +13,8 @@ const Order = {
                                     COMMIT;` ),
 
   getCustomPizzas: order_id => db.any( `SELECT pizza_id AS custom FROM ordered_custom_pizzas WHERE order_id=${order_id}` ),
-
   getSpecialtyPizzas: order_id => db.any( `SELECT pizza_id AS specialty FROM ordered_specialty_pizzas WHERE order_id=${order_id}` ),
   getBeverages: order_id => db.any( `SELECT beverage_id as beverage FROM ordered_beverages WHERE order_id=${order_id}` ),
-                                // const results = {}
-                                // results['customPizzas'] = db.any( `SELECT pizza_id FROM ordered_custom_pizzas WHERE order_id=${order_id}` )
-                                // //results['specialtyPizzas'] = db.any( `SELECT pizza_id FROM ordered_specialty_pizzas WHERE order_id=${order_id}` )
-                                // //results['beverages'] = db.any( `SELECT beverage_id FROM ordered_beverages WHERE order_id=${order_id}` )
-                                // console.log(results)
-                                // return results
 
   addCustomPizza: ( order_id, pizza_id ) => db.none( `INSERT INTO ordered_custom_pizzas ( order_id, pizza_id ) VALUES ( ${order_id}, ${pizza_id} )` ),
   addSpecialtyPizza: ( order_id, pizza_id ) => db.none( `INSERT INTO ordered_specialty_pizzas ( order_id, pizza_id ) VALUES ( ${order_id}, ${pizza_id} )` ),
@@ -32,19 +25,14 @@ const Order = {
   removeBeverage: ( order_id, beverage_id ) => db.none( `DELETE FROM ordered_beverages WHERE order_id=${order_id} AND beverage_id=${beverage_id}` ),
 
   delete: order_id => db.none( `BEGIN TRANSACTION;
-                                DELETE FROM ordered_custom_pizzas WHERE pizza_id = 5;
-                                DELETE FROM pizza_toppings WHERE pizza_id =5;
-                                DELETE FROM pizza_crusts WHERE pizza_id=5;
-                                DELETE FROM custom_pizza WHERE id = 5;
+                                DELETE FROM pizza_toppings WHERE pizza_id = ( SELECT pizza_id FROM ordered_custom_pizzas WHERE order_id = ${order_id} );
+                                DELETE FROM pizza_crusts WHERE pizza_id = ( SELECT pizza_id FROM ordered_custom_pizzas WHERE order_id = ${order_id} );
+                                DELETE FROM custom_pizza WHERE id = ( SELECT pizza_id FROM ordered_custom_pizzas WHERE order_id = ${order_id} );
+                                DELETE FROM ordered_custom_pizzas WHERE order_id = ${order_id};
+                                DELETE FROM ordered_specialty_pizzas WHERE order_id = ${order_id};
+                                DELETE FROM ordered_beverages WHERE order_id = ${order_id};
                                 COMMIT;
                                 ` )
-
-  // delete: order_id => {
-  //                       db.none( `DELETE FROM ordered_custom_pizzas WHERE order_id = ${order_id}` )
-  //                       db.none( `DELETE FROM ordered_specialty_pizzas WHERE order_id = ${order_id}` )
-  //                       db.none( `DELETE FROM ordered_beverages WHERE order_id = ${order_id}` )
-  //                       db.none( `DELETE FROM order_data WHERE order_id = ${order_id}` )
-  //                     }
 
 }
 
