@@ -25,7 +25,7 @@ router.get( '/edit/:customer_id', ( request, response ) => {
   const { customer_id } = request.params
 
   Promise.all([ customer.getById( customer_id ) ]).then( data => {
-    response.render( 'toppings/edit-topping', { customer: data[0]} )
+    response.render( 'customer/edit', { customer: data[0]} )
   })
 })
 
