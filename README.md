@@ -16,13 +16,13 @@ Specifications
 
 ### Specs
 
-- [ ] Create a detailed E-R diagram.
-- [ ] Perform as much logic as possible in the database.
-- [ ] Track all of its customers and any relevant customer information, such as customer ID, name, username/login details, delivery address, phone number, payment methods on file.
-- [ ] Track the ingredients that comprise each of these preferences (e.g., onions, ham, pineapple, anchovies, bacon, etc.)
-- [ ] Track standard drinks, including a product ID, drink description, manufacturer, supplier, price
-- [ ] Track its pizza sizes (small, medium, large, extra large), types (thick or thin crust), ingredients (pepperoni, sausage, mushrooms, onions, cheese, etc.), price data for these pizza sizes and ingredients.
-- [ ] Maintain a history of transactions - all purchases including price, payment method, and delivery date.
+- [x] Create a detailed E-R diagram.
+- [x] Perform as much logic as possible in the database.
+- [x] Track all of its customers and any relevant customer information, such as customer ID, name, username/login details, delivery address, phone number, payment methods on file.
+- [x] Track the ingredients that comprise each of these preferences (e.g., onions, ham, pineapple, anchovies, bacon, etc.)
+- [x] Track standard drinks, including a product ID, drink description, manufacturer, supplier, price
+- [x] Track its pizza sizes (small, medium, large, extra large), types (thick or thin crust), ingredients (pepperoni, sausage, mushrooms, onions, cheese, etc.), price data for these pizza sizes and ingredients.
+- [x] Maintain a history of transactions - all purchases including price, payment method, and delivery date.
 
 ### Required
 
