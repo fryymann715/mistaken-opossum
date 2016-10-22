@@ -7,4 +7,5 @@ INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardhol
 INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardholder_name) VALUES ('Mastercard','9384-3438-8717-7953', '2/20', '971', 'Maya Angelou');
 INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardholder_name) VALUES ('Mastercard','9837-1283-8150-7913', '9/20', '100', 'Booker T Washington');
 INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardholder_name) VALUES ('American Express','8138-1285-9735-8426','10/20', '830', 'Teddy Pendergrass');
-INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardholder_name) VALUES ('Soul','none needed', 'never expires', '102', 'You');
+INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardholder_name) VALUES ('Soul','None Needed', 'Never Expires', '102', 'You');
+INSERT INTO payment_cards (card_type, card_number, expiration_date, csv, cardholder_name) VALUES ('Cash','Money', 'When the world collaspe' , '000', 'Whoever');
