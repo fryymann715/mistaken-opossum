@@ -20,14 +20,6 @@ router.post( '/add', ( request, response ) => {
   }
 })
 
-router.get('/:customer_id/:order_id', ( request, response ) => {
-  const { customer_id, order_id } = request.params
-
-  Promise.all([ Beverage.getAll() ])
-  .then( data => response.render('beverages/index', { beverages: data[0],
-                                                      customer_id: customer_id,
-                                                      order_id: order_id}) )
-})
 
 router.get( '/details/:bev_id', ( request, response ) => {
   const { bev_id } = request.params
@@ -50,6 +42,16 @@ router.post( '/edit/:id', ( request, response ) => {
   Promise.all([ Beverage.update( id, name, manufacturer, supplier, price ) ])
   .then( response.redirect( `/beverage/details/${id}` ) )
 })
+
+router.get('/:customer_id/:order_id', ( request, response ) => {
+  const { customer_id, order_id } = request.params
+
+  Promise.all([ Beverage.getAll() ])
+  .then( data => response.render('beverages/index', { beverages: data[0],
+                                                      customer_id: customer_id,
+                                                      order_id: order_id}) )
+})
+
 
 router.get( '/delete/:id', ( request, response ) => {
   const { id } = request.params
