@@ -15,6 +15,7 @@ const specialty_pizza = require('./routes/specialty_pizza')
 const order_route = require('./routes/orders')
 const customer = require('./routes/customer')
 const transaction = require('./routes/transaction')
+const payment = require('./routes/payment')
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use('/beverage', beverage )
 app.use('/specialty_pizza', specialty_pizza )
 app.use('/customer', customer )
 app.use('/transaction', transaction )
+app.use('/payment', payment )
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
