@@ -8,14 +8,14 @@ const Topping = {
   getById: id => db.one( `SELECT * FROM topping WHERE id=${id}` ),
   getNames: () => db.any( `SELECT name FROM topping` ),
   update: ( id, name = '', price = '' ) => {
-    let sql = `UPDATE topping SET `
-    if (name != '') sql += `name='${name}'`
-    if (price != '') sql += `, price='${price}'`
-    sql += ` WHERE id = ${id}`
-    db.none( sql ) },
+          let sql = `BEGIN TRANSACTION;`
+          if (name != '') sql += `UPDATE topping SET name='${name}' WHERE id = ${id};`
+          if (price != '') sql += `UPDATE topping SET price='${price}' WHERE id = ${id};`
+          sql += `COMMIT;`
+          db.none( sql ) },
   delete: id => db.none( `DELETE FROM topping WHERE id=${id}` )
 
 
 }
-//TODO: Add cheese and no cheese option
+
 module.exports = { Topping }
