@@ -14,3 +14,6 @@ block content
       h6= transaction.date
     if transaction.delivery_address
       h6= transaction.delivery_address
+
+    a( href="/transaction/pay/" + transaction.id )
+      button( value="Pay" ) Proceed to Payment

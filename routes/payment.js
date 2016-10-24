@@ -1,9 +1,13 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const { Payment } = require( '../database/paymentDB' )
 
-/* GET users listing. */
-router.get('/', (request, response ) => {
-  response.send('route for payment');
-});
+router.get( '/', (request, response ) => {
+
+  Promise.all([ Payment.getAll() ])
+  .then( data => response.send( data ) )
+
+
+})
 
 module.exports = router;

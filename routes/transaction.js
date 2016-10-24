@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const express = require( 'express' )
+const router = express.Router()
 
-const Transaction = require('../database/transactionDB')
+const Transaction = require( '../database/transactionDB' )
+const { Payment } = require( '../database/paymentDB' )
 
 router.get( '/', ( request, response ) => {
   Promise.all([ Transaction.getAll() ])
@@ -26,6 +27,22 @@ router.post( '/new', ( request, response ) => {
 router.get( '/create/:transaction_id', ( request, response ) => {
   const { transaction_id } = request.params
   response.redirect( `/transaction/details/${transaction_id}` )
+})
+
+router.get( '/pay/:transaction_id', ( request, response ) => {
+  const { transaction_id } = request.params
+  Promise.all([ Payment.getAll() ])
+  .then( r_payments => response.render( 'transaction/pay_transaction', { payments: r_payments[0],
+                                                                          transaction_id: transaction_id } ))
+
+})
+
+router.post( '/pay/:transaction_id', ( request, response ) => {
+  const { transaction_id } = request.params
+  const { payment_id } = request.body
+
+  Promise.all([ Transaction.pay( transaction_id, payment_id ) ])
+  .then( response.send( "Transaction Paid." ) )
 })
 
 module.exports = router
