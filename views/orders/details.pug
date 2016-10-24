@@ -2,12 +2,14 @@ extends ../layout
 
 block content
   h2 Order details
+  h4 Customer ID: #{customer_id}
+  h4 Order ID: #{order_id}
   hr
 
   if customPizzas
     h3 Custom Pizzas
     -for ( pizza of customPizzas ){
-      h5 id #{pizza}
+      h5 pizza id: #{pizza}
       a( href="/order/remove/custom_pizza/" + pizza + "/" + customer_id + "/" + order_id )
         h6 delete
 
@@ -19,7 +21,7 @@ block content
   if specialtyPizzas
     h3 Specialty Pizzas
     -for ( pizza of specialtyPizzas ){
-      h5 id #{pizza}
+      h5 pizza id #{pizza}
       a( href="/order/remove/specialty_pizza/" + pizza + "/" + customer_id + "/"+ order_id )
         h6 delete
     -}
@@ -30,7 +32,7 @@ block content
   if beverages
     h3 beverages
     -for ( bev of beverages ){
-      h5 id #{bev}
+      h5 beverage id #{bev}
       a( href="/order/remove/beverage/" + bev + "/" + customer_id + "/" + order_id )
         h6 delete
     -}

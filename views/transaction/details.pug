@@ -4,16 +4,16 @@ block content
   h2 Transaction details
 
   if transaction
-    h4 Transaction ID
-    h4= transaction.id
+    h4 Customer ID: #{customer_id}
+
+    h4 Transaction ID: #{transaction.id}
     p
-      h5 Order ID
-      h5= transaction.order_id
+      h5 Order ID : #{transaction.order_id}
 
     if transaction.date
       h6= transaction.date
     if transaction.delivery_address
       h6= transaction.delivery_address
 
-    a( href="/transaction/pay/" + transaction.id )
+    a( href="/transaction/pay/" + customer_id + "/" + transaction.id )
       button( value="Pay" ) Proceed to Payment

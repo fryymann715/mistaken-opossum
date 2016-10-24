@@ -6,6 +6,6 @@ block content
 
   if beverages
     -for (beverage of beverages){
-      a(href="/order/add/beverage/" + beverage.id + "/" + order_id)
+      a(href="/order/add/beverage/" + beverage.id + "/" + customer_id + "/" + order_id)
         h4 #{beverage.name}
     -}
