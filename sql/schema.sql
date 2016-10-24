@@ -50,20 +50,19 @@ PRIMARY KEY ("id")
 
 CREATE TABLE "transaction" (
 "id"  SERIAL NOT NULL ,
-"date" TIMESTAMP ,
+"date" VARCHAR(80) ,
 "delivery_address" VARCHAR(80) ,
 "order_id" INTEGER ,
-"price" INTEGER ,
 PRIMARY KEY ("id")
 );
 
 CREATE TABLE "payment_cards" (
 "id"  SERIAL NOT NULL ,
-"card_type" TEXT NOT NULL DEFAULT 'NULL',
-"card_number" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
-"expiration_date" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
-"csv" INTEGER NOT NULL ,
-"cardholder_name" VARCHAR(80) NOT NULL DEFAULT 'NULL' ,
+"card_type" TEXT DEFAULT 'NULL',
+"card_number" VARCHAR(80) DEFAULT 'NULL' ,
+"expiration_date" VARCHAR(80) DEFAULT 'NULL' ,
+"csv" INTEGER ,
+"cardholder_name" VARCHAR(80) DEFAULT 'NULL' ,
 PRIMARY KEY ("id")
 );
 

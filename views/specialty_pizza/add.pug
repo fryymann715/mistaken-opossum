@@ -4,6 +4,7 @@ block content
   h2 Create Specialty Pizza
 
   form( action="/specialty_pizza/details", method="post" )
+    input( name="customer_id", type="hidden", value=customer_id )
     input( name="order_id", type="hidden", value=order_id )
     select(name="pizza_id")
       -for (pizza of specialty_pizza){

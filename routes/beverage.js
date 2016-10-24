@@ -20,11 +20,12 @@ router.post( '/add', ( request, response ) => {
   }
 })
 
-router.get('/:order_id', ( request, response ) => {
-  const { order_id } = request.params
+router.get('/:customer_id/:order_id', ( request, response ) => {
+  const { customer_id, order_id } = request.params
 
   Promise.all([ Beverage.getAll() ])
   .then( data => response.render('beverages/index', { beverages: data[0],
+                                                      customer_id: customer_id,
                                                       order_id: order_id}) )
 })
 
