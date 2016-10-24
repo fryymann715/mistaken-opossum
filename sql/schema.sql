@@ -50,10 +50,9 @@ PRIMARY KEY ("id")
 
 CREATE TABLE "transaction" (
 "id"  SERIAL NOT NULL ,
-"date" TIMESTAMP ,
+"date" VARCHAR(80) ,
 "delivery_address" VARCHAR(80) ,
 "order_id" INTEGER ,
-"price" INTEGER ,
 PRIMARY KEY ("id")
 );
 
