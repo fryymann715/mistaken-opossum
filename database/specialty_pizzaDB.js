@@ -1,6 +1,6 @@
 const db = require('./mainDB')
 
-const specialty_pizza = {
+const Specialty_pizza = {
 
   add: ( description, price ) => db.none( `INSERT INTO specialty_pizza ( description, price ) VALUES ( '${description}', '${price}' )` ),
   getAll: () => db.any( `SELECT * FROM specialty_pizza` ),
@@ -16,4 +16,4 @@ const specialty_pizza = {
 
 }
 
-module.exports = { specialty_pizza }
+module.exports = { Specialty_pizza }

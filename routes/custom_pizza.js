@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { CustomPizza } = require('../database/custom_pizzasDB')
-const { Crust } = require('../database/crustsDB')
+const { CustomPizza } = require('../database/custom_pizzaDB')
+const { Crust } = require('../database/crustDB')
 const { Topping } = require('../database/toppingsDB')
 
 router.get('/', ( request, response ) => {
