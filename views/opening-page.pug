@@ -6,7 +6,7 @@ block content
   if customerList
 
     h4 Choose a customer
-    form
+    form( action="/order/new", method="post" )
       select( name="customer_id" )
         -for( customer of customerList ){
           option( value= customer.id ) #{customer.name}

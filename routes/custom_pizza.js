@@ -25,11 +25,12 @@ router.get( '/details/:pizza_id/:order_id', ( request, response) => {
   })
 })
 
-router.get( '/add/:order_id', ( request, response ) => {
-  const { order_id } = request.params
+router.get( '/add/:customer_id/:order_id', ( request, response ) => {
+  const { customer_id, order_id } = request.params
   Promise.all([ Crust.getAll() ])
   .then( data => {
     response.render( 'custom_pizzas/add', { crusts: data[0],
+                                            customer_id: customer_id,
                                             order_id: order_id } )
   })
 })
