@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Crust } = require('../database/crustsDB')
+const { Crust } = require('../database/crustDB')
 
 router.get( '/add', ( request, response ) => response.render( 'pizza_crusts/add' ))
 

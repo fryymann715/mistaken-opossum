@@ -1,7 +1,7 @@
 const db = require( './mainDB' )
 
 
-const customer = {
+const Customer = {
 
   add: ( name, address, phone_number ) => db.none( `INSERT INTO customer ( name, address, phone_number ) VALUES ( '${name}', '${address}', '${phone_number}' )` ),
   getAll: () => db.any( `SELECT * FROM customer` ),
@@ -15,9 +15,9 @@ const customer = {
     sql += ` WHERE id = ${id}`
     db.none( sql ) },
   delete: id => db.none( `DELETE FROM customer WHERE id=${id}` )
-  
+
 
 
 }
 
-module.exports = { customer }
+module.exports = { Customer }

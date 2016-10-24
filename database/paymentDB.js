@@ -1,7 +1,7 @@
 const db = require( './mainDB' )
 
 
-const payment = {
+const Payment = {
 
   add: ( card_type, card_number, expiration_date, csv, cardholder_name ) => db.none( `INSERT INTO payment_cards ( card_type, card_number, expiration_date, csv, cardholder_name ) VALUES ( '${card_type}', '${card_number}', '${expiration_date}', '${csv}', '${cardholder_name}' )` ),
   getAll: () => db.any( `SELECT * FROM payment_cards` ),
@@ -19,5 +19,5 @@ const payment = {
 
 
 }
-//TODO: Add cheese and no cheese option
-module.exports = { payment }
+
+module.exports = { Payment }
