@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { Order } = require('../database/orderDB')
+const { Customer } = require('../database/customerDB')
 
 router.get( '/', ( request, response ) => {
     Promise.all([ Order.getAll() ])
     .then( orderData => response.render( 'orders/index', { orders: orderData[0] } ) )
 })
 
-router.get( '/details/:order_id', ( request, response ) => {
-  const { order_id } = request.params
+router.get( '/details/:customer_id/:order_id', ( request, response ) => {
+  const { customer_id, order_id } = request.params
 
   Promise.all([ Order.getContents( order_id) ])
   .then( data => {
@@ -37,19 +38,23 @@ router.get( '/details/:order_id', ( request, response ) => {
     response.render('orders/details', { customPizzas: custom_pizza_ids,
                                         specialtyPizzas: specialty_pizza_ids,
                                         beverages: beverage_ids,
-                                        order_id: order_id })
+                                        order_id: order_id,
+                                        customer_id: customer_id})
   })
 })
 
-router.get( '/new', ( request, response ) => {
-  response.render('orders/new')
+router.post( '/new', ( request, response ) => {
+  const { customer_id } = request.body
+  console.log("customer ID ", customer_id)
+  response.render( 'orders/new', { customer_id: customer_id } )
 })
 
-router.post( '/new', ( request, response ) => {
+router.post( '/new/create/:customer_id', ( request, response ) => {
+    const { customer_id } = request.params
     Promise.all([ Order.new() ])
-    .then( data => {
-      const new_id = data[0]
-      response.redirect( `/order/details/${new_id.id}` )
+    .then( r_order_id => {
+      const order_id = r_order_id[0]
+      response.redirect( `/order/details/${customer_id}/${order_id.id}` )
     })
 })
 
