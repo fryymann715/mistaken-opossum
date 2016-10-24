@@ -59,39 +59,39 @@ router.post( '/new/create/:customer_id', ( request, response ) => {
 })
 
 router.post( '/add/custom_pizza', ( request, response ) => {
-  const { order_id, pizza_id } = request.body
+  const { customer_id, order_id, pizza_id } = request.body
   Promise.all([ Order.addCustomPizza( order_id, pizza_id ) ])
-  .then( response.redirect( `/order/details/${order_id}` ) )
+  .then( response.redirect( `/order/details/${customer_id}/${order_id}` ) )
 })
 
-router.post( '/add/specialty_pizza/:pizza_id/:order_id', ( request, response ) =>{
-  const { order_id, pizza_id } = request.params
+router.post( '/add/specialty_pizza/:pizza_id/:customer_id/:order_id', ( request, response ) =>{
+  const { customer_id, order_id, pizza_id } = request.params
   Promise.all([ Order.addSpecialtyPizza( order_id, pizza_id ) ])
-  .then( response.redirect( `/order/details/${order_id}` ) )
+  .then( response.redirect( `/order/details/${customer_id}/${order_id}` ) )
 })
 
-router.get( '/add/beverage/:beverage_id/:order_id', ( request, response ) => {
-  const { beverage_id, order_id } = request.params
+router.get( '/add/beverage/:beverage_id/:customer_id/:order_id', ( request, response ) => {
+  const { beverage_id, customer_id, order_id } = request.params
   Promise.all([ Order.addBeverage( order_id, beverage_id ) ])
-  .then( response.redirect( `/order/details/${order_id}` ) )
+  .then( response.redirect( `/order/details/${customer_id}/${order_id}` ) )
 })
 
-router.get( '/remove/custom_pizza/:pizza_id/:order_id', ( request, response ) =>{
-  const { order_id, pizza_id } = request.params
+router.get( '/remove/custom_pizza/:pizza_id/:customer_id/:order_id', ( request, response ) =>{
+  const { customer_id, order_id, pizza_id } = request.params
   Promise.all([ Order.removeCustomPizza( order_id, pizza_id ) ])
-  .then( response.redirect( `/order/details/${order_id}` ) )
+  .then( response.redirect( `/order/details/${customer_id}/${order_id}` ) )
 })
 
-router.get( '/remove/specialty_pizza/:pizza_id/:order_id', ( request, response ) => {
-  const { order_id, pizza_id } = request.params
+router.get( '/remove/specialty_pizza/:pizza_id/:customer_id/:order_id', ( request, response ) => {
+  const { customer_id, order_id, pizza_id } = request.params
   Promise.all([ Order.removeSpecialtyPizza( order_id, pizza_id ) ])
-  .then( response.redirect( `/order/details/${order_id}` ) )
+  .then( response.redirect( `/order/details/${customer_id}/${order_id}` ) )
 })
 
-router.get( '/remove/beverage/:beverage_id/:order_id', ( request, response ) => {
-  const { order_id, beverage_id } = request.params
+router.get( '/remove/beverage/:beverage_id/:customer_id/:order_id', ( request, response ) => {
+  const { customer_id, order_id, beverage_id } = request.params
   Promise.all([ Order.removeBeverage( order_id, beverage_id ) ])
-  .then( response.redirect( `/order/details/${order_id}` ) )
+  .then( response.redirect( `/order/details/${customer_id}/${order_id}` ) )
 })
 
 module.exports = router

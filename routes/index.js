@@ -5,8 +5,7 @@ const { Customer } = require('../database/customerDB')
 router.get('/', ( request, response ) => {
   Promise.all([ Customer.getAll() ])
   .then( r_customers => {
-    console.log(r_customers[0])
-          response.render( 'opening-page', { customerList: r_customers[0] } )
+    response.render( 'opening-page', { customerList: r_customers[0] } )
   })
 
 })
