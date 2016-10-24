@@ -21,6 +21,14 @@ router.get( '/', ( request, response ) => {
   })
 })
 
+router.get (`/details/:customer_id`, (request, response) => {
+const {customer_id} = request.params
+Promise.all ([Customer.getById(customer_id)])
+.then( data => response.send(data) )
+
+
+})
+
 router.get( '/edit/:customer_id', ( request, response ) => {
   const { customer_id } = request.params
 
